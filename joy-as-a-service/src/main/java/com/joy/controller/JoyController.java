@@ -7,6 +7,7 @@ import com.joy.dto.ModerationRequest;
 import com.joy.repository.JoyRepository;
 import com.joy.repository.PendingJoyRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class JoyController {
     }
 
     @PostMapping("/submit")
-    public PendingJoy submitJoy(@RequestBody PendingJoy newJoy) {
+    public PendingJoy submitJoy(@Valid @RequestBody PendingJoy newJoy) {
         String cleanContent = Jsoup.clean(newJoy.getContent(), Safelist.none());
         newJoy.setContent(cleanContent);
         return pendingRepository.save(newJoy);
@@ -51,18 +52,18 @@ public class JoyController {
     }
 
     @PostMapping("/moderate/approve")
-    public String approveJoy(@RequestBody ModerationRequest request, HttpServletRequest httpRequest) {
+    public String approveJoy(@Valid @RequestBody ModerationRequest request, HttpServletRequest httpRequest) {
         String clientIp = getClientIp(httpRequest);
         return moderationService.approveWithRateLimit(request, clientIp);
     }
 
     @PostMapping("/moderate/reject")
-    public String rejectJoy(@RequestBody ModerationRequest request, HttpServletRequest httpRequest) {
+    public String rejectJoy(@Valid @RequestBody ModerationRequest request, HttpServletRequest httpRequest) {
         String clientIp = getClientIp(httpRequest);
         return moderationService.rejectWithRateLimit(request, clientIp);
     }
 
-    //// Helper to get IP behind proxies like Codespaces/Cloudflare
+    // Helper to get IP behind proxies like Codespaces/Cloudflare
     private String getClientIp(HttpServletRequest request) {
         String xf = request.getHeader("X-Forwarded-For");
         return (xf == null) ? request.getRemoteAddr() : xf.split(",")[0];
