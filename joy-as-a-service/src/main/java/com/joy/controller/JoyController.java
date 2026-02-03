@@ -7,6 +7,8 @@ import com.joy.dto.ModerationRequest;
 import com.joy.repository.JoyRepository;
 import com.joy.repository.PendingJoyRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,8 @@ public class JoyController {
 
     @PostMapping("/submit")
     public PendingJoy submitJoy(@RequestBody PendingJoy newJoy) {
+        String cleanContent = Jsoup.clean(newJoy.getContent(), Safelist.none());
+        newJoy.setContent(cleanContent);
         return pendingRepository.save(newJoy);
     }
 

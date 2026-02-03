@@ -1,5 +1,6 @@
 package com.joy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
@@ -8,6 +9,7 @@ import java.time.OffsetDateTime;
 public class PendingJoy {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -15,6 +17,7 @@ public class PendingJoy {
     private String content;
 
     @Column(name = "submitted_at", insertable = false, updatable = false)
+    @JsonIgnore
     private OffsetDateTime submittedAt;
 
     // Default Constructor
