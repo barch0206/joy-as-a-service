@@ -49,16 +49,19 @@ public class ModerationService {
         Joy joy = new Joy();
         joy.setContent(pending.getContent());
         joyRepository.save(joy);
-        pendingRepository.delete(pending);
-
+        pending.setDeleted(true);
+        pendingRepository.save(pending);
         return "Joy #" + id + " approved!";
     }
 
     @Transactional
     public String reject(Long id) {
+        PendingJoy pending = pendingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Joy not found with ID: " + id));
         if (!pendingRepository.existsById(id))
             return "Joy not found with ID: " + id;
-        pendingRepository.deleteById(id);
+        pending.setDeleted(true);
+        pendingRepository.save(pending);
         return "Joy #" + id + " rejected.";
     }
 }

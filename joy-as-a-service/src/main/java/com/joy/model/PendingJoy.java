@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "pending_joys")
@@ -24,6 +25,10 @@ public class PendingJoy {
     @JsonIgnore
     private OffsetDateTime submittedAt;
 
+    @Column(name = "is_deleted")
+    @JsonIgnore
+    private boolean isDeleted = false;
+
     // Default Constructor
     public PendingJoy() {
     }
@@ -39,5 +44,14 @@ public class PendingJoy {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @JsonIgnore
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }

@@ -52,7 +52,7 @@ public class JoyController {
     // See what's in the moderation queue
     @GetMapping("/moderate/queue")
     public List<PendingJoy> getModerationQueue() {
-        return pendingRepository.findAll();
+        return pendingRepository.findAllByIsDeletedFalse();
     }
 
     @PostMapping("/moderate/approve")
