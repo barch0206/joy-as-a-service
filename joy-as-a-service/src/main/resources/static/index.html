@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Small Joys Dashboard 🌿</title>
+    <title>Small Joys 🌿</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -17,24 +17,16 @@
         </header>
 
         <div id="joy-card" class="joy-card">
-            <p id="joy-text">Click the button to find a reason to smile...</p>
+            <p id="joy-text">Click the button below to find a reason to smile...</p>
         </div>
 
-        <div class="button-stack">
-            <button onclick="getNewJoy()" class="btn btn-primary">✨ Get a Random Joy</button>
+        <div class="action-grid">
+            <button onclick="getNewJoy()" class="btn btn-primary main-action">✨ Get a Random Person's Joy!</button>
 
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle">🧭 Explore Tools</button>
-                <div class="dropdown-content">
-                    <a href="/swagger-ui/index.html">🛠️ Interactive API Docs</a>
-                    <a href="/api/moderate/queue">📋 View Raw Queue</a>
-                    <hr>
-                    <p class="dropdown-label">Admin Actions</p>
-                    <a href="#" onclick="alert('Use the Swagger UI for POST requests like Approve/Reject!')">✅ Approve
-                        Joy</a>
-                    <a href="#" onclick="alert('Use the Swagger UI for POST requests like Approve/Reject!')">❌ Reject
-                        Joy</a>
-                </div>
+            <div class="nav-links">
+                <a href="/submit.html" class="nav-item">✍️ Submit your own Joy</a>
+                <a href="/moderate.html" class="nav-item">🛡️ Moderation Desk</a>
+                <a href="/swagger-ui/index.html" class="nav-item">🛠️ API Documentation</a>
             </div>
         </div>
 
@@ -47,14 +39,13 @@
         async function getNewJoy() {
             const textElement = document.getElementById('joy-text');
             textElement.innerText = "Searching for joy...";
-
             try {
                 const response = await fetch('/api/joy');
-                if (!response.ok) throw new Error('No joy found');
+                if (!response.ok) throw new Error();
                 const data = await response.json();
                 textElement.innerText = `"${data.content}"`;
             } catch (error) {
-                textElement.innerText = "The world is temporarily out of joy. Try again later!";
+                textElement.innerText = "Couldn't fetch Joys! Try again later.";
             }
         }
     </script>
