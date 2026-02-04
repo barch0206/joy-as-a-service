@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.transaction.annotation.Transactional;
 import com.joy.service.ModerationService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api")
@@ -33,13 +36,17 @@ public class JoyController {
     @Autowired
     private ModerationService moderationService;
 
+    private final Random random = new Random();
+
     @GetMapping("/joy")
     public Joy getRandomJoy() {
-        Joy joy = joyRepository.findRandomJoy();
-        if (joy == null) {
+        long totalJoys = joyRepository.countByIsDeletedFalse();
+        if (totalJoys == 0) {
             throw new RuntimeException("We do not have any joys to display for now, try again later!");
         }
-        return joy;
+        int randomIndex = random.nextInt((int) totalJoys);
+        Page<Joy> joyPage = joyRepository.findAllByIsDeletedFalse(PageRequest.of(randomIndex, 1));
+        return joyPage.getContent().get(0);
     }
 
     @PostMapping("/submit")
@@ -52,7 +59,7 @@ public class JoyController {
     // See what's in the moderation queue
     @GetMapping("/moderate/queue")
     public List<PendingJoy> getModerationQueue() {
-        return pendingRepository.findAllByIsDeletedFalse();
+        return pendingRepository.findAllByIsDeletedFalse(PageRequest.of(0, 20)).getContent();
     }
 
     @PostMapping("/moderate/approve")
