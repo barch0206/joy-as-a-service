@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.dao.DataAccessException;
-
+import org.springframework.web.servlet.NoHandlerFoundException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +57,15 @@ public class GlobalExceptionHandler {
         System.err.println("DATABASE ERROR: " + ex.getMessage());
         return buildErrorResponse(HttpStatus.SERVICE_UNAVAILABLE,
                 "We're having trouble reaching our database. Please try again later.");
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public Object handle404(NoHandlerFoundException ex) {
+        // If the user is specifically hitting the API, return JSON
+        if (ex.getRequestURL().startsWith("/api")) {
+            return buildErrorResponse(HttpStatus.NOT_FOUND, "The endpoint you are looking for does not exist.");
+        }
+        return null; 
     }
 
     // Helper method

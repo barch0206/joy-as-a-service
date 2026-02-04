@@ -1,0 +1,138 @@
+:root {
+    --grass-green: #4ade80;
+    --deep-forest: #166534;
+    --soft-white: #ffffff;
+    --sunlight: #fefce8;
+    --shadow: rgba(22, 101, 52, 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--grass-green), #22c55e);
+    color: var(--deep-forest);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: var(--soft-white);
+    padding: 3rem;
+    border-radius: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    /* Slightly wider for the full page feel */
+    width: 90%;
+    text-align: center;
+}
+
+/* The Joy Card display area */
+.joy-card {
+    background-color: var(--sunlight);
+    border: 2px dashed var(--grass-green);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#joy-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 500;
+    margin: 0;
+}
+
+.button-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn {
+    width: 100%;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 2px solid var(--grass-green);
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--grass-green);
+    color: var(--deep-forest);
+}
+
+.btn-primary:hover {
+    background-color: #22c55e;
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    background-color: var(--soft-white);
+    color: var(--grass-green);
+}
+
+/* Dropdown Logic */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 100%;
+    box-shadow: 0 8px 16px var(--shadow);
+    border-radius: 1rem;
+    z-index: 1;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.dropdown-content a {
+    color: var(--deep-forest);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--sunlight);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 10px 16px 5px;
+    text-align: left;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #f3f4f6;
+    margin: 0;
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
