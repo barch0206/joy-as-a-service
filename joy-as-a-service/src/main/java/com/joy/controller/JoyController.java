@@ -35,7 +35,11 @@ public class JoyController {
 
     @GetMapping("/joy")
     public Joy getRandomJoy() {
-        return joyRepository.findRandomJoy();
+        Joy joy = joyRepository.findRandomJoy();
+        if (joy == null) {
+            throw new RuntimeException("We do not have any joys to display for now, try again later!");
+        }
+        return joy;
     }
 
     @PostMapping("/submit")

@@ -16,7 +16,7 @@ public class PendingJoy {
     private Long id;
 
     @NotBlank(message = "Content cannot be empty")
-    @Size(min = 3, max = 280, message = "Joy must be between 3 and 280 characters")
+    @Size(min = 10, max = 280, message = "Joy must be between 10 and 280 characters")
     @Column(nullable = false)
     private String content;
 
