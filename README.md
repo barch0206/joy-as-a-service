@@ -5,17 +5,17 @@
 A lightweight Spring Boot application designed to provide daily doses of positivity. Built with Java 25, PostgreSQL, and Docker.
 
 ## ✨ Features
-* **Random Joy Discovery:** Fetch a community-submitted "joy" from the database.
-* **Modern UI:** Clean, responsive design with a "grass-green" theme.
-* **Interactive API:** Built-in Swagger UI for testing endpoints.
-* **Moderation Workspace:** Administrative tools for reviewing submissions.
+* Random Joy Discovery: Fetch a community-submitted "joy" from the database.
+* Modern UI: Clean, responsive design with a "grass-green" theme.
+* Interactive API: Built-in Swagger UI for testing endpoints.
+* Moderation Workspace: Administrative tools for reviewing submissions.
 
 ## 🛠️ Tech Stack
-* **Backend:** Java 25, Spring Boot, Spring Data JPA, Hibernate.
-* **Database:** PostgreSQL (Hosted on Supabase).
-* **Frontend:** Vanilla JS, HTML5, CSS3.
-* **Containerization:** Docker (Multi-stage build).
-* **Analytics:** Google Analytics 4.
+* Backend: Java 25, Spring Boot, Spring Data JPA, Hibernate.
+* Database: PostgreSQL (Hosted on Supabase).
+* Frontend: Vanilla JS, HTML5, CSS3.
+* Containerization: Docker (Multi-stage build).
+* Analytics: Google Analytics 4.
 
 ## 🚀 Getting Started
 
@@ -24,7 +24,7 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 * Access to a PostgreSQL database.
 
 ### Local Run via Docker
-1. **Clone the repo:**
+1. Clone the repo:
    ```bash
    git clone https://github.com/barch0206/joy-as-a-service.git
    ```
