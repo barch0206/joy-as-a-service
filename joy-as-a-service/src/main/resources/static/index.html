@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+    let isFetching = false;
+
     window.onload = () => {
         getNewJoy();
     };
 
     async function getNewJoy() {
+        if (isFetching) return;
         const textElement = document.getElementById('joy-text');
+        const joyBtn = document.querySelector('.main-action');
+        isFetching = true;
+        joyBtn.style.opacity = "0.5";
+        joyBtn.style.cursor = "not-allowed";
         textElement.innerText = "Searching for joy...";
         try {
             const response = await fetch('/api/joy');
@@ -15,6 +22,10 @@
             textElement.innerText = `"${data.content}"`;
         } catch (error) {
             textElement.innerText = "Couldn't fetch Joys! Try again later.";
+        } finally {
+            isFetching = false;
+            joyBtn.style.opacity = "1";
+            joyBtn.style.cursor = "pointer";
         }
     }
 </script>
@@ -50,7 +61,7 @@
         <div class="footer">
             <p>© 2026 Small Joys Project • <a href="mailto:sankalph1234@gmail.com">Contact Us</a></p>
             <p style="font-size: 0.7rem; margin-top: 10px;">
-                💡 Pro Tip: For now, You can also use our <a href="/swagger-ui/index.html">Interactive API Docs</a>
+                💡 Pro Tip: For now, You can use our <a href="/swagger-ui/index.html">Interactive API Docs</a>
                 to submit or moderate joys!
             </p>
         </div>
