@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: small-joys-project
+    runtime: docker
+    plan: free # This is the "Magic" line to avoid the prompt
+    region: singapore # Change to ohio or frankfurt if preferred
+    envVars:
+      - key: DB_URL
+        sync: false # This tells Render you'll provide it manually in the dashboard
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: PORT
+        value: 8080
