@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    window.onload = () => {
+        getNewJoy();
+    };
+
+    async function getNewJoy() {
+        const textElement = document.getElementById('joy-text');
+        textElement.innerText = "Searching for joy...";
+        try {
+            const response = await fetch('/api/joy');
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            textElement.innerText = `"${data.content}"`;
+        } catch (error) {
+            textElement.innerText = "Couldn't fetch Joys! Try again later.";
+        }
+    }
+</script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Small Joys 🌿</title>
+    <title>Small Joys</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -13,7 +31,7 @@
     <div class="container">
         <header>
             <h1>Small Joys 🌿</h1>
-            <p>Spreading happiness, one API call at a time.</p>
+            <p>Share life's little wins. One joy at a time.</p>
         </header>
 
         <div id="joy-card" class="joy-card">
@@ -21,7 +39,7 @@
         </div>
 
         <div class="action-grid">
-            <button onclick="getNewJoy()" class="btn btn-primary main-action">✨ Get a Random Person's Joy!</button>
+            <button onclick="getNewJoy()" class="btn btn-primary main-action">Click for Joy</button>
 
             <div class="nav-links">
                 <a href="/submit.html" class="nav-item">✍️ Submit your own Joy</a>
@@ -29,26 +47,14 @@
                 <a href="/swagger-ui/index.html" class="nav-item">🛠️ API Documentation</a>
             </div>
         </div>
-
         <div class="footer">
-            Built with Spring Boot & Pure Joy.
+            <p>© 2026 Small Joys Project • <a href="mailto:sankalph1234@gmail.com">Contact Us</a></p>
+            <p style="font-size: 0.7rem; margin-top: 10px;">
+                💡 Pro Tip: For now, You can also use our <a href="/swagger-ui/index.html">Interactive API Docs</a>
+                to submit or moderate joys!
+            </p>
         </div>
     </div>
-
-    <script>
-        async function getNewJoy() {
-            const textElement = document.getElementById('joy-text');
-            textElement.innerText = "Searching for joy...";
-            try {
-                const response = await fetch('/api/joy');
-                if (!response.ok) throw new Error();
-                const data = await response.json();
-                textElement.innerText = `"${data.content}"`;
-            } catch (error) {
-                textElement.innerText = "Couldn't fetch Joys! Try again later.";
-            }
-        }
-    </script>
 </body>
 
 </html>

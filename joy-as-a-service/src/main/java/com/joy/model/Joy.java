@@ -15,6 +15,7 @@ public class Joy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 10, max = 280, message = "Joy must be between 10 and 280 characters")
     @Column(nullable = false)
     private String content;
 
@@ -47,7 +48,7 @@ public class Joy {
         return createdAt;
     }
 
-    @JsonIgnore //dont ask, it just works!
+    @JsonIgnore // dont ask, it just works!
     public boolean isDeleted() {
         return isDeleted;
     }
