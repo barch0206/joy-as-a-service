@@ -7,14 +7,13 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 ## Features
 * Randomization (Custom SQL to fetch a random joy)
 * Moderation (Admin approval/rejection workflow)
-* Persistence (PostgreSQL/Supabase data storage)
+* Persistence (PostgreSQL data storage)
 * Limiting (Resilience4j API protection)
 * Containerization (Docker multi-stage builds)
 * Documentation (Swagger/OpenAPI interactive UI)
 * Analytics (GA4 user behavior tracking)
 * Validation (Spring Boot input scrubbing)
-* Pagination (Efficient admin data handling)
-* Internal API docs(swagger UI)
+* Pagination (Efficient database query performance)
 
 ## 🛠️ Tech Stack
 * Backend: Java 25, Spring Boot, Spring Data JPA, Hibernate.
@@ -23,7 +22,7 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 * Containerization: Docker (Multi-stage build).
 * Analytics: Google Analytics 4.
 
-## Getting Started
+## Try it out!
 
 ### Prerequisites
 * Docker & Docker Desktop installed.
@@ -58,7 +57,7 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 * `/src/main/java` - Spring Boot backend logic (Controllers, Models, Repositories).
 * `/src/main/resources/static` - Frontend files (HTML, CSS, JS).
 * `Dockerfile` - Multi-stage build configuration.
-* `render.yaml` - Blueprint for cloud deployment.
+* `render.yaml` - Blueprint for cloud deployment. (I havent deployed this project myself yet, so please cross-check this!)
 
 ---
 
@@ -148,12 +147,16 @@ Rate limit exceeded. Please wait 10 seconds.
 
 ```
 ---
+## Screenshots
+
+![Screenshot_2026-02-05-23-54-23-454_com brave browser](https://github.com/user-attachments/assets/784d41f0-c673-452c-b08c-c531c8d49b51)
+
 
 ### 📖 Interactive Documentation
 
 For a live environment to test these requests, start the application and visit:
 `http://localhost:8080/swagger-ui/index.html`
+Alternatively can hit the apis using postman/browser.
 
 ## ⚖️ License
 Distributed under the MIT License. See `LICENSE` for more information.
-```
