@@ -17,7 +17,7 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 
 ## 🛠️ Tech Stack
 * Backend: Java 25, Spring Boot, Spring Data JPA, Hibernate.
-* Database: PostgreSQL (Hosted on Supabase).
+* Database: PostgreSQL.
 * Frontend: Vanilla JS, HTML5, CSS3.
 * Containerization: Docker (Multi-stage build).
 * Analytics: Google Analytics 4.
