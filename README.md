@@ -1,10 +1,10 @@
 
-# Small Joys 🌿
+# Small Joys 🍀
 > Share life's little wins. One joy at a time.
 
 A lightweight Spring Boot application designed to provide daily doses of positivity. Built with Java 25, PostgreSQL, and Docker.
 
-## ✨ Features
+## Features
 * Random Joy Discovery: Fetch a community-submitted "joy" from the database.
 * Modern UI: Clean, responsive design with a "grass-green" theme.
 * Interactive API: Built-in Swagger UI for testing endpoints.
@@ -17,7 +17,7 @@ A lightweight Spring Boot application designed to provide daily doses of positiv
 * Containerization: Docker (Multi-stage build).
 * Analytics: Google Analytics 4.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 * Docker & Docker Desktop installed.
