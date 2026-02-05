@@ -1,4 +1,4 @@
-```markdown
+
 # Small Joys 🌿
 > Share life's little wins. One joy at a time.
 
