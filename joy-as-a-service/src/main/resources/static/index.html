@@ -1,39 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<script>
-    let isFetching = false;
-
-    window.onload = () => {
-        getNewJoy();
-    };
-
-    async function getNewJoy() {
-        if (isFetching) return;
-        const textElement = document.getElementById('joy-text');
-        const joyBtn = document.querySelector('.main-action');
-        isFetching = true;
-        joyBtn.style.opacity = "0.5";
-        joyBtn.style.cursor = "not-allowed";
-        textElement.innerText = "Searching for joy...";
-        try {
-            const response = await fetch('/api/joy');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            textElement.innerText = `"${data.content}"`;
-        } catch (error) {
-            textElement.innerText = "Couldn't fetch Joys! Try again later.";
-        } finally {
-            isFetching = false;
-            joyBtn.style.opacity = "1";
-            joyBtn.style.cursor = "pointer";
-        }
-    }
-</script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Small Joys</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q8NK30MG9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8Q8NK30MG9');
+    </script>
+
+    <script>
+        let isFetching = false;
+
+        async function getNewJoy() {
+            if (isFetching) return;
+
+            // This now works because gtag was defined above!
+            if (typeof gtag === 'function') {
+                gtag('event', 'get_new_joy', { 'event_category': 'engagement' });
+            }
+
+            const textElement = document.getElementById('joy-text');
+            const joyBtn = document.querySelector('.main-action');
+
+            isFetching = true;
+            if (joyBtn) {
+                joyBtn.style.opacity = "0.5";
+                joyBtn.style.cursor = "not-allowed";
+            }
+            textElement.innerText = "Searching for joy...";
+
+            try {
+                const response = await fetch('/api/joy');
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                textElement.innerText = `"${data.content}"`;
+            } catch (error) {
+                textElement.innerText = "Couldn't fetch Joys! Try again later.";
+            } finally {
+                isFetching = false;
+                if (joyBtn) {
+                    joyBtn.style.opacity = "1";
+                    joyBtn.style.cursor = "pointer";
+                }
+            }
+        }
+
+        window.onload = () => {
+            getNewJoy();
+        };
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -41,7 +63,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Small Joys 🌿</h1>
+            <h1>Small Joys 🍀</h1>
             <p>Share life's little wins. One joy at a time.</p>
         </header>
 

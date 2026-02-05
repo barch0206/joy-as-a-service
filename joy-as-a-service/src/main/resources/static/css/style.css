@@ -160,3 +160,16 @@ header p {
     font-size: 0.8rem;
     color: #9ca3af;
 }
+
+.footer a {
+    color: var(--grass-green);
+    /* Or var(--deep-forest) if you want them subtler */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: var(--deep-forest);
+    text-decoration: underline;
+}
