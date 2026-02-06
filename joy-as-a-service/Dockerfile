@@ -1,7 +1,11 @@
-# Stage 1: Build - Uses Maven to compile the JAR
+# Stage 1: Build
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY . .
+
+# Point COPY to your specific subfolder
+COPY joy-as-a-service/ . 
+
+# Now Maven will see the pom.xml directly in /app
 RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime - The actual image that gets deployed
