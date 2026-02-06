@@ -2,7 +2,8 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean package -DskipTests
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Runtime - The actual image that gets deployed
 FROM eclipse-temurin:17-jre-jammy
